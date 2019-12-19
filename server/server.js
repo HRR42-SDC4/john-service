@@ -20,7 +20,6 @@ app.get('/api/restaurants/:restaurantID', (req, res) => {
   Restaurant.findOne({ id: restId }).lean()
     .then((doc) => {
       res.send(doc);
-      // console.log(doc);
     })
     .catch((err) => {
       console.log('Error finding restaurant in database: ', err);
