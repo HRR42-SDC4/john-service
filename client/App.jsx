@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
+import styled from 'styled-components';
 import Mentions from './Mentions.jsx';
 
-import styled from 'styled-components';
 
 const Box = styled.section`
   margin-top: 50px;
@@ -47,60 +47,62 @@ class App extends React.Component {
 
     this.state = {
       articles: null,
-      showAll: null
-    }
+      showAll: null,
+    };
+    this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    var url = window.location.href;
-    var id = url.split('=')[1];
+    const url = window.location.href;
+    const id = url.split('=')[1];
 
     $.ajax({
-      type: "GET",
+      type: 'GET',
       url: `http://localhost:3003/api/restaurants/${id}`,
       success: (data) => {
         this.setState({
           articles: data.articles,
-          showAll: false
-        })
+          showAll: false,
+        });
       },
       error: (error) => {
-        console.log("Error getting articles: ", error);
-      }
-    })
+        console.log('Error getting articles: ', error);
+      },
+    });
   }
 
   handleClick(e) {
     e.preventDefault();
     this.setState({
       showAll: !this.state.showAll
-    })
+    });
   }
 
   render() {
     if (this.state.showAll === null) {
       return (
         <div>Content is loading...</div>
-      )
-    } else if (this.state.showAll === false) {
-      return (
-        <Box>
-        <HeaderText >Zagat mentions of this restaurant</HeaderText>
-          <Mentions articles={this.state.articles.slice(0,2)}/>
-          <Button type="button" onClick={this.handleClick.bind(this)}>Show All ({this.state.articles.length})</Button>
-        </Box>
-      )
+      );
     }
-    else if (this.state.showAll === true) {
+    if (this.state.showAll === false) {
       return (
         <Box>
-          <HeaderText >Zagat mentions of this restaurant</HeaderText>
-          <Mentions articles={this.state.articles}/>
-          <Button type="button" onClick={this.handleClick.bind(this)}>Show Less</Button>
+          <HeaderText>Zagat mentions of this restaurant</HeaderText>
+          <Mentions articles={this.state.articles.slice(0,2)}/>
+          <Button type="button" onClick={this.handleClick}>
+            {`Show All ${this.state.articles.length}`}
+          </Button>
         </Box>
       );
     }
+    return (
+      <Box>
+        <HeaderText>Zagat mentions of this restaurant</HeaderText>
+        <Mentions articles={this.state.articles}/>
+        <Button type="button" onClick={this.handleClick}>Show Less</Button>
+      </Box>
+    );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app2"));
+ReactDOM.render(<App />, document.getElementById('app2'));

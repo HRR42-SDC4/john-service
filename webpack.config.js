@@ -1,11 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   entry: './client/App.jsx',
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'public'),
   },
 
   module: {
@@ -15,9 +14,9 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
-        }
-      }
-    ]
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+        },
+      },
+    ],
   },
 };

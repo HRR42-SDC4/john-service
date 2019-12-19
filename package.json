@@ -5,8 +5,9 @@
   "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon server/server.js",
-    "build": "webpack -d --watch"
+    "start": "npx nodemon server/server.js",
+    "build": "webpack -d --watch",
+    "db:seed": "node database/faker.js"
   },
   "repository": {
     "type": "git",
