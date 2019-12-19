@@ -1,10 +1,14 @@
-/**
- * These rules enforce the Hack Reactor Style Guide
- *
- * Visit this repo for more information:
- *   https://github.com/reactorcore/eslint-config-hackreactor
- */
-
 module.exports = {
-  extends: './node_modules/eslint-config-hackreactor/index.js'
+  extends: 'airbnb',
+  rules: {
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "arrow-parens": ["error", "always"],
+    "no-console": ["error", {allow: ["log", "warn", "error"]}],
+    "no-plusplus": "off",
+  },
+  env: {
+    browser: true,
+    jest: true,
+    node: true,
+  },
 };
