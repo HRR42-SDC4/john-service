@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('../database/index.js');
 const Restaurant = require('../database/schema.js');
 
 const app = express();
@@ -17,12 +16,9 @@ app.listen(port, () => {
 });
 
 app.get('/api/restaurants/:restaurantID', (req, res) => {
-  console.log(req.params.restaurantID);
   const restId = req.params.restaurantID;
-  // console.log("Restaurant ID: ", restId);
   Restaurant.findOne({ id: restId }).lean()
     .then((doc) => {
-      console.log('doc returned: ', doc);
       res.send(doc);
     })
     .catch((err) => {
@@ -31,18 +27,20 @@ app.get('/api/restaurants/:restaurantID', (req, res) => {
 });
 
 app.post('/api/restaurants/', (req, res) => {
-  Restaurant.insertOne(req.data[0]).lean()
+  console.log('req: ', req.body);
+  Restaurant.create(req.body)
     .then(() => {
       res.end();
     })
     .catch((err) => {
       console.log('Error creating restaurant in database: ', err);
     });
+  res.end();
 });
 
 app.put('/api/restaurants/:restaurantID', (req, res) => {
-  const restId = parseInt(req.params.restaurantID, 10);
-  Restaurant.updateOne({ id: restId }, req.data[0]).lean()
+  const restId = req.params.restaurantID;
+  Restaurant.updateOne({ id: restId }, req.body)
     .then(() => {
       res.end();
     })
