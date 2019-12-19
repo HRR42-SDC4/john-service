@@ -9,12 +9,4 @@ const restaurantSchema = new mongoose.Schema({
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
-const post = (restaurant) => {
-  Restaurant.create(restaurant);
-  return true;
-};
-
 module.exports = Restaurant;
-
-// exports.Restaurant = Restaurant;
-exports.post = post;
