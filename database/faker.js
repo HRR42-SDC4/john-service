@@ -2,7 +2,7 @@ const faker = require('faker');
 const Restaurant = require('./schema.js');
 
 
-const generateRestaurants = (numR) => {
+const generateRestaurants = (numR, start = 0) => {
   const restaurants = [];
 
   const generateArticles = (numA) => {
@@ -19,7 +19,7 @@ const generateRestaurants = (numR) => {
     return arts;
   };
 
-  for (let j = 0; j < numR; j++) {
+  for (let j = start; j < (start + numR); j++) {
     const numArticles = Math.floor(Math.random() * 3) + 3;
     const objR = {
       id: (j + 1),
@@ -38,4 +38,4 @@ const generateRestaurants = (numR) => {
     });
 };
 
-generateRestaurants(100);
+generateRestaurants(100000, 0);

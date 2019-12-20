@@ -59,3 +59,13 @@ app.delete('/api/restaurants/:restaurantID', (req, res) => {
       console.log('Error deleting restaurant from database: ', err);
     });
 });
+
+app.delete('/api/deleteAll', (req, res) => {
+  Restaurant.deleteMany({})
+    .then(() => {
+      res.end();
+    })
+    .catch((err) => {
+      console.log('Error deleting restaurant from database: ', err);
+    });
+});
