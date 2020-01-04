@@ -25,3 +25,7 @@ coverage
 build/
 dist/
 
+# csv files
+articles.csv
+restaurants.csv
+

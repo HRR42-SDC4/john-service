@@ -9,8 +9,9 @@ const csvWriter = createCsvWriter({
     {id: 'title', title: 'Title'},
     {id: 'body', title: 'Body'},
   ],
-  fieldDelimiter: ';',
-  append: true
+  fieldDelimiter: ',',
+  append: true,
+  alwaysQuote: true
 });
 
 const generate = (numA, start = 0) => {
@@ -23,7 +24,7 @@ const generate = (numA, start = 0) => {
         id: i + 1 + start,
         image: `https://creidfecimages.s3-us-west-1.amazonaws.com/photo${imgId}.jpeg`,
         title: faker.lorem.words(),
-        body: faker.lorem.paragraphs(),
+        body: faker.lorem.paragraphs().split("\r").join("\\r").split("\n").join("\\n") // Cassandra handles line and carriage returns poorly
       };
       articles.push(objA);
     }
@@ -35,7 +36,7 @@ const generate = (numA, start = 0) => {
   .writeRecords(articles)
   .then(() => {
     if (numA - 100000 > 0) {
-      console.log('Recursing...');
+      console.log("Recursing, " + ((numA / 100000) - 1) + "...");
       generate(numA - 100000, start + 100000);
     } else {
       console.log('The articles file was written successfully');

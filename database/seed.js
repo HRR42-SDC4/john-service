@@ -7,7 +7,7 @@ const csvWriter = createCsvWriter({
     {id: 'id', title: 'Id'},
     {id: 'articles', title: 'Articles'},
   ],
-  fieldDelimiter: ';',
+  fieldDelimiter: ',',
   append: true
 });
 
@@ -21,7 +21,7 @@ const generateRestaurants = (numR, start = 0) => {
       let selected = Math.floor(Math.random() * 2000000);
       assigned.push(selected);
     }
-    return assigned;
+    return '[' + assigned.toString() + ']';
   }
 
   // for a given number of restaurants, assign a random number of articles to it and push it to the restarant array
@@ -38,7 +38,7 @@ const generateRestaurants = (numR, start = 0) => {
   }
 
   assembleRestaurants(100000);
-  console.log(restaurants[restaurants.length - 1]);
+
 
   csvWriter
   .writeRecords(restaurants)
@@ -47,6 +47,7 @@ const generateRestaurants = (numR, start = 0) => {
       console.log('Recursing...');
       generateRestaurants(numR - 100000, start + 100000);
     } else {
+      console.log(restaurants[restaurants.length - 1]);
       console.log('The CSV file was written successfully');
     }
   })
