@@ -26,8 +26,8 @@ build/
 dist/
 
 # Anything with a liscense key or a password
-newrelic.js
-server/postgres.js
+newrelicKey.js
+server/postgresPass.js
 
 # csv files
 articles.csv
