@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const db = require('../database/index.js');
 
 
 const restaurantSchema = new mongoose.Schema({

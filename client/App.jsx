@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 import styled from 'styled-components';
-import Mentions from './Mentions.jsx';
+import Mentions from './Mentions';
 
 
 const Box = styled.section`
