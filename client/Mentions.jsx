@@ -38,7 +38,7 @@ const Image = styled.img`
 
 const Mentions = ({ articles }) => {
   const items = [];
-  for (const i = 0; i < articles.length; i+=2) {
+  for (let i = 0; i < articles.length; i+=2) {
     if (articles[i + 1]) {
       items.push(
         <Articles key={'A', i}>
@@ -63,7 +63,7 @@ const Mentions = ({ articles }) => {
   }
   return (
     <div>{items}</div>
-  )
-}
+  );
+};
 
 export default Mentions;

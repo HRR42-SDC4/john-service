@@ -1,5 +1,5 @@
 config:
-  target: 'http://localhost:3000'
+  target: 'http://localhost:3003'
   processor: './grabRandom.js'
   phases:
     - duration: 60
@@ -10,6 +10,6 @@ scenarios:
       - function: 'randomId'
       - get:
           url: '/api/postgres/articles/{{ id }}'
-      count: 360
+      count: 300
 
 

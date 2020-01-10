@@ -49,19 +49,21 @@ class App extends React.Component {
       articles: null,
       showAll: null,
     };
-    this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    const url = window.location.href;
-    const id = url.split('=')[1];
+    // const url = window.location.href;
+    // const id = url.split('=')[1];
+    const pathArray = window.location.pathname.split('/');
+    const id = pathArray[pathArray.length - 2];
 
     $.ajax({
       type: 'GET',
-      url: `http://localhost:3003/api/restaurants/${id}`,
+      url: `http://localhost:3003/api/postgres/articles/${id}`,
       success: (data) => {
         this.setState({
-          articles: data.articles,
+          articles: data,
           showAll: false,
         });
       },

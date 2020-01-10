@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 const newrelic = require('newrelic');
 const express = require('express');
+const path = require('path');
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -13,13 +14,12 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
-});
+app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use('/:restaurantID', express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/api/postgres/articles/:restaurantID', (req, res) => {
   const restId = req.params.restaurantID;
-  const query = 'SELECT articles.image, articles.title, articles.body FROM articles, restaurants '
+  const query = 'SELECT image, title FROM articles, restaurants '
               + `WHERE articles.id = restaurants.article AND restaurants.id = '${restId}'`;
   client.query(query, (error, results) => {
     // console.log(results.rows);
@@ -73,3 +73,5 @@ app.get('/api/postgres/articles/:restaurantID', (req, res) => {
 //       console.log('Error deleting restaurant from database: ', err);
 //     });
 // });
+
+app.listen(port, () => { console.log(`Listening on port ${port}...`); });
