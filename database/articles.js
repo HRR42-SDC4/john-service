@@ -7,7 +7,7 @@ const csvWriter = createCsvWriter({
     { id: 'id', title: 'Id' },
     { id: 'image', title: 'Image' },
     { id: 'title', title: 'Title' },
-    { id: 'body', title: 'Body' },
+    // { id: 'body', title: 'Body' },
   ],
   fieldDelimiter: ',',
   append: true,
@@ -24,7 +24,7 @@ const generate = (numA, start = 0) => {
         id: i + 1 + start,
         image: `https://creidfecimages.s3-us-west-1.amazonaws.com/photo${imgId}.jpeg`,
         title: faker.lorem.words(),
-        body: faker.lorem.paragraphs(2),
+        // body: faker.lorem.paragraphs(2),
       };
       articles.push(objA);
     }
