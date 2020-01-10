@@ -25,10 +25,12 @@ coverage
 build/
 dist/
 
-# Anything with a liscense key
-newrelic.js
+# Anything with a liscense key or a password
+newrelicKey.js
+server/postgresPass.js
 
 # csv files
 articles.csv
 restaurants.csv
+restaurantsRelational.csv
 

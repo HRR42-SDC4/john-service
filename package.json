@@ -8,7 +8,7 @@
     "start": "node server/server.js",
     "build": "webpack -d --watch",
     "db:seed": "node database/faker.js",
-    "seed": "node database/seed.js",
+    "restaurants": "node database/restaurants.js",
     "articles": "node database/articles.js"
   },
   "repository": {
@@ -38,6 +38,7 @@
     "mongoose": "^5.7.12",
     "newrelic": "^6.2.0",
     "node": "^13.3.0",
+    "pg": "^7.17.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^4.4.1",
